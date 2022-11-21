@@ -1,1 +1,1 @@
-# COINADMIN---Functions
+# COINADMIN-FUNCTIONS
