@@ -1,0 +1,108 @@
+    .black {
+        /* width: 10px; */
+
+        animation: fade 1s steps(5, start) infinite;
+        color: white;
+        background-color: #000000;
+        /* padding: 3px 0; */
+        /* word-spacing: 5px; */
+        /* display: inline-block; */
+
+    }
+
+    #input1 {
+        display: inline;
+        outline: none;
+        /* visibility: visible; */
+    }
+
+    /*
+          If you press the Insert key, the vertical line caret will automatically
+          be replaced by a one-character selection.
+        */
+    #input1::selection {
+        color: #FFFF;
+        background: #000000;
+    }
+
+    #input1:empty::before {
+        content: ' ';
+    }
+
+    @keyframes blink {
+        to {
+            visibility: hidden;
+        }
+
+    }
+
+    @keyframes fade {
+        to {
+            visibility: hidden;
+            /* background: none;
+                color: #000000; */
+        }
+
+    }
+
+    #input2+#caret {
+        animation: blink 1s steps(5, start) infinite;
+    }
+
+
+
+
+
+    #input1.noCaret+#caret {
+        visibility: hidden;
+    }
+
+    #input2.noCaret+#caret {
+        visibility: hidden;
+    }
+
+    /* #input1 {
+
+            caret-color: transparent;
+        } */
+
+    #wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0px;
+    }
+
+    #caret {
+
+        margin-left: 3px;
+        border: 0;
+        /* margin-top: -30px; */
+        height: 62px;
+        padding: 0;
+        width: 35px;
+        outline: none;
+        background-color: #000000;
+        display: inline-block;
+        font-family: monospace;
+    }
+
+    #input2 {
+        font-size: 70px;
+        font-weight: 800;
+        color: black;
+        /*padding-top: 10px; */
+        font-family: Oswald;
+        display: inline-flex;
+        align-items: center;
+        /* height: 12.3px; */
+
+    }
+
+    #input2 span {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 62px;
+        font-family: monospace;
+    }
