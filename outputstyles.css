@@ -1,4 +1,4 @@
-   .black {
+  .black {
       /* width: 10px; */
 
       animation: fade 1s steps(5, start) infinite;
@@ -110,5 +110,7 @@
       justify-content: center;
       align-items: center;
       height: 62px;
+      font-size: 100px;
       font-family: monospace;
     }
+
