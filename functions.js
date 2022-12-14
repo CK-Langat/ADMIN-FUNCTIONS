@@ -5,6 +5,17 @@
 const input = document.getElementById('input1');
 const input1 = document.getElementById('input11');
 
+const engaged = document.getElementById("engaged")
+const engaged1 = document.getElementById("engaged1")
+const next = document.getElementById("next")
+const previous = document.getElementById("previous")
+const finished = document.getElementById("finished")
+const finished1 = document.getElementById("finished1")
+const previousClear = document.getElementById("previous-clear")
+const nextClear = document.getElementById("next-clear")
+const clearPass = document.getElementById("clear-pass")
+const clearEmail = document.getElementById("clear-email")
+
 let positioninput = document.getElementById("input2");
 let positioninput1 = document.getElementById("input21");
 const cursor = document.getElementById('cursor');
@@ -94,8 +105,10 @@ document.addEventListener('selectionchange', (e) => {
 
 input.addEventListener('input', onInputFunc);
 input.addEventListener('blur', hideCarret);
+input.addEventListener('focus', onfocus);
 input1.addEventListener('input', onInputFunc);
 input1.addEventListener('blur', hideCarret);
+input1.addEventListener('focus', onfocus);
 
 function onInputFunc(e) {
     const origin = e.target.id
@@ -124,7 +137,7 @@ function onInputFunc(e) {
 
         inputSource.textContent = lastLine;
 
-        focusAndMoveCursorToTheEnd();
+        //focusAndMoveCursorToTheEnd();
     }
 
     // If we delete everything, display the square caret again:
@@ -148,12 +161,12 @@ input.addEventListener('keydown', (e) => {
 
         handleCommand(input.textContent);
         input.textContent = '';
-        focusAndMoveCursorToTheEnd();
+        //focusAndMoveCursorToTheEnd();
     }
 });
 
 // Set the focus to the input so that you can start typing straigh away:
-input.focus();
+// input.focus();
 
 
 function refresh(id) {
@@ -201,6 +214,17 @@ function hideCarret(e) {
     //removeBlinkingCursor(id)
 }
 
+function onfocus(e) {
+    const id = e.target.id
+    if (id == 'input1') {
+        previousClear.click()
+        console.log('focusing on input 1')
+    } {
+        console.log('focusing on input 2')
+        nextClear.click()
+    }
+}
+
 // looop through all the spans of the output that is supposed to be 
 // inactive and remove the 'black' class
 function removeBlinkingCursor(id) {
@@ -215,6 +239,9 @@ function removeBlinkingCursor(id) {
     }
 
 }
+
+positioninput.classList.add('noCaret')
+positioninput1.classList.add('noCaret')
 
 
 
