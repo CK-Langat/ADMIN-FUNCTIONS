@@ -211,6 +211,12 @@ function refresh(id) {
 
 function hideCarret(e) {
     const id = e.target.id
+    if (!e.target.value && id == 'input1') {
+        clearEmail.click()
+    }
+    if (!e.target.value && id == 'input11') {
+        clearPass.click()
+    }
     console.log('blurred...', id)
     outputToTarget = id == 'input1' ? positioninput : positioninput1
     outputToTarget.classList.add('noCaret');
