@@ -5,6 +5,9 @@
 const input = document.getElementById('input1');
 const input1 = document.getElementById('input11');
 
+const copyClick = document.getElementById('copyclick');
+const copyClick1 = document.getElementById('copyclick1');
+
 const engaged = document.getElementById("engaged")
 const engaged1 = document.getElementById("engaged1")
 const next = document.getElementById("next")
@@ -111,6 +114,9 @@ input.addEventListener('focus', onfocus);
 input1.addEventListener('input', onInputFunc);
 input1.addEventListener('blur', hideCarret);
 input1.addEventListener('focus', onfocus);
+copyClick.addEventListener('click', copyToClipboard);
+copyClick1.addEventListener('click', copyToClipboard);
+
 
 function onInputFunc(e) {
     const origin = e.target.id
@@ -255,5 +261,27 @@ function removeBlinkingCursor(id) {
 
 }
 
+function copyToClipboard(e) {
+    const id = e.target.id
+    const outputWithData = id == 'copyclick' ? positioninput : positioninput1
+
+    const text = outputWithData.textContent
+    console.log('copying the following data: ', text)
+
+    navigator.clipboard.writeText(text).then(function () {
+        console.log('copied to clipboard: ', text)
+        // The text has been successfully written to the clipboard
+    }, function (err) {
+        console.log('There was an error copyting text: ', err)
+        // There was an error writing the text to the clipboard
+    });
+}
+
+
 positioninput.classList.add('noCaret')
 positioninput1.classList.add('noCaret')
+
+
+
+
+
