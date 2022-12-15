@@ -51,12 +51,14 @@ function handleCommand(command) {
 // cursor position, unless it's already at the end, in which case the
 // #cursor element should be displayed instead.
 document.addEventListener('selectionchange', (e) => {
+    // console.log('selectionchange func called')
+
     //     if (document.activeElement.id !== 'input2') return;
     let select = 'selectionchange'
 
 
     // console.log(select, positioninput)
-    const range = window.getSelection().getRangeAt(0);
+    // const range = window.getSelection().getRangeAt(0);
     // console.log('currently at', e.target.activeElement.id)
     const active = e.target.activeElement.id
     removeBlinkingCursor(active)
@@ -170,6 +172,7 @@ input.addEventListener('keydown', (e) => {
 
 
 function refresh(id) {
+
     removeBlinkingCursor(id)
     let outputToTarget = null
     outputToTarget = id == 'input1' ? positioninput : positioninput1
@@ -216,13 +219,19 @@ function hideCarret(e) {
 
 function onfocus(e) {
     const id = e.target.id
-    if (id == 'input1') {
-        previousClear.click()
-        console.log('focusing on input 1')
-    } {
-        console.log('focusing on input 2')
+    const data = input.value
+    const data1 = input1.value
+
+    if (!data && id == 'input11') {
         nextClear.click()
+    } else if (!data1 && id == 'input1') {
+        previousClear.click()
+    } else if (data && id == 'input11') {
+        next.click()
+    } else if (data1 && id == 'input1') {
+        previous.click()
     }
+
 }
 
 // looop through all the spans of the output that is supposed to be 
@@ -242,8 +251,3 @@ function removeBlinkingCursor(id) {
 
 positioninput.classList.add('noCaret')
 positioninput1.classList.add('noCaret')
-
-
-
-
-
