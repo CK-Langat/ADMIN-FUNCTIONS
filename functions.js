@@ -13,7 +13,7 @@ const engaged1 = document.getElementById("engaged1")
 const next = document.getElementById("next")
 const previous = document.getElementById("previous")
 const finished = document.getElementById("finished")
-const finished1 = document.getElementById("finished1")
+const finished1 = document.getElementById("finished2")
 const previousClear = document.getElementById("previous-clear")
 const nextClear = document.getElementById("next-clear")
 const clearPass = document.getElementById("clear-pass")
@@ -217,11 +217,17 @@ function refresh(id) {
 
 function hideCarret(e) {
     const id = e.target.id
+
+    // on-blur, play animations
     if (!e.target.value && id == 'input1') {
         clearEmail.click()
+    } else if (e.target.value && id == 'input1') {
+        finished.click()
     }
     if (!e.target.value && id == 'input11') {
         clearPass.click()
+    } else if (e.target.value && id == 'input11') {
+        finished1.click()
     }
     console.log('blurred...', id)
     outputToTarget = id == 'input1' ? positioninput : positioninput1
@@ -280,7 +286,6 @@ function copyToClipboard(e) {
 
 positioninput.classList.add('noCaret')
 positioninput1.classList.add('noCaret')
-
 
 
 
