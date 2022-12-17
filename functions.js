@@ -229,10 +229,10 @@ function hideCarret(e) {
     } else if (e.target.value && id == 'input11') {
         finished1.click()
     }
-    console.log('blurred...', id)
+    // console.log('blurred...', id)
     outputToTarget = id == 'input1' ? positioninput : positioninput1
     outputToTarget.classList.add('noCaret');
-    //removeBlinkingCursor(id)
+    removeBlinkingCursor(id)
 }
 
 function onfocus(e) {
@@ -255,14 +255,20 @@ function onfocus(e) {
 // looop through all the spans of the output that is supposed to be 
 // inactive and remove the 'black' class
 function removeBlinkingCursor(id) {
+    // console.log({ removeFor: id })
     let outputToTarget = null
     // check the id of the source input and determine which output to alter
-    outputToTarget = id == 'input1' ? positioninput1 : positioninput
+    // outputToTarget = id == 'input1' ? positioninput1 : positioninput
 
-    if (outputToTarget.children.length == 0) return
-    // console.log(outputToTarget.children)
-    for (let i = 0; i < outputToTarget.children.length; i++) {
-        outputToTarget.children[i].classList.remove('black')
+    if (positioninput1.children.length) {
+        for (let i = 0; i < positioninput1.children.length; i++) {
+            positioninput1.children[i].classList.remove('black')
+        }
+    }
+    if (positioninput.children.length) {
+        for (let i = 0; i < positioninput.children.length; i++) {
+            positioninput.children[i].classList.remove('black')
+        }
     }
 
 }
