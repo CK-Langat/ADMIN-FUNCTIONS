@@ -18,7 +18,6 @@ const previousClear = document.getElementById("previous-clear")
 const nextClear = document.getElementById("next-clear")
 const clearPass = document.getElementById("clear-pass")
 const clearEmail = document.getElementById("clear-email")
-const submitfield = document.getElementById("submitfield")
 
 
 let positioninput = document.getElementById("input2");
