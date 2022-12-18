@@ -232,7 +232,7 @@ function hideCarret(e) {
     } else if (e.target.value && id == 'input11') {
         finished1.click()
     }
-    else if (key === 'Enter') {
+    else if (key == 'Enter') {
         submitfield.click()
     }
 
