@@ -118,7 +118,7 @@ input1.addEventListener('blur', hideCarret);
 input1.addEventListener('focus', onfocus);
 copyClick.addEventListener('click', copyToClipboard);
 copyClick1.addEventListener('click', copyToClipboard);
-document.addEventListener('keydown', function (event))
+
 
 
 function onInputFunc(e) {
@@ -232,9 +232,12 @@ function hideCarret(e) {
     } else if (e.target.value && id == 'input11') {
         finished1.click()
     }
-    else if (key == 'Enter') {
-        submitfield.click()
-    }
+    document.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            submitfield.click
+        }
+    });
+
 
     // console.log('blurred...', id)
     outputToTarget = id == 'input1' ? positioninput : positioninput1
