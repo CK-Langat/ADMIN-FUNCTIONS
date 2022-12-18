@@ -232,11 +232,7 @@ function hideCarret(e) {
     } else if (e.target.value && id == 'input11') {
         finished1.click()
     }
-    document.addEventListener('keypress', function (event) {
-        if (event.key === 'Enter') {
-            submitfield.click
-        }
-    });
+
 
 
     // console.log('blurred...', id)
@@ -302,3 +298,7 @@ function copyToClipboard(e) {
 
 positioninput.classList.add('noCaret')
 positioninput1.classList.add('noCaret')
+
+
+
+
