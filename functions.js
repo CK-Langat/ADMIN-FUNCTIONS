@@ -18,6 +18,8 @@ const previousClear = document.getElementById("previous-clear")
 const nextClear = document.getElementById("next-clear")
 const clearPass = document.getElementById("clear-pass")
 const clearEmail = document.getElementById("clear-email")
+const submitfield = document.getElementById("submitfield")
+
 
 let positioninput = document.getElementById("input2");
 let positioninput1 = document.getElementById("input21");
@@ -116,6 +118,7 @@ input1.addEventListener('blur', hideCarret);
 input1.addEventListener('focus', onfocus);
 copyClick.addEventListener('click', copyToClipboard);
 copyClick1.addEventListener('click', copyToClipboard);
+document.addEventListener('keydown', function (event))
 
 
 function onInputFunc(e) {
@@ -229,6 +232,10 @@ function hideCarret(e) {
     } else if (e.target.value && id == 'input11') {
         finished1.click()
     }
+    else if (key === 'Enter') {
+        submitfield.click()
+    }
+
     // console.log('blurred...', id)
     outputToTarget = id == 'input1' ? positioninput : positioninput1
     outputToTarget.classList.add('noCaret');
@@ -292,7 +299,3 @@ function copyToClipboard(e) {
 
 positioninput.classList.add('noCaret')
 positioninput1.classList.add('noCaret')
-
-
-
-
