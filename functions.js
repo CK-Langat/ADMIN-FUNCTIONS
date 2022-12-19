@@ -2,6 +2,10 @@
 //BEGINING OF OUTPUTSTYLE CODE//
 
 // const history = document.getElementById('history');
+
+
+
+// const history = document.getElementById('history');
 const input = document.getElementById('input1');
 const input1 = document.getElementById('input11');
 
@@ -18,6 +22,7 @@ const previousClear = document.getElementById("previous-clear")
 const nextClear = document.getElementById("next-clear")
 const clearPass = document.getElementById("clear-pass")
 const clearEmail = document.getElementById("clear-email")
+const submitfield1 = document.getElementById("submitfield")
 
 
 let positioninput = document.getElementById("input2");
@@ -113,6 +118,7 @@ input.addEventListener('input', onInputFunc);
 input.addEventListener('blur', hideCarret);
 input.addEventListener('focus', onfocus);
 input1.addEventListener('input', onInputFunc);
+input1.addEventListener('keydown', onKeyDown);
 input1.addEventListener('blur', hideCarret);
 input1.addEventListener('focus', onfocus);
 copyClick.addEventListener('click', copyToClipboard);
@@ -137,6 +143,11 @@ function onInputFunc(e) {
         }
         refresh(origin)
     }
+
+    console.log(e)
+    if (e.key == 'Enter' && origin == 'input11') {
+        submitfield1.click()
+    }
     if (input.childElementCount > 0) {
         const lines = inputSource.innerText.replace(/\n$/, '').split('\n');
         const lastLine = lines[lines.length - 1];
@@ -157,6 +168,16 @@ function onInputFunc(e) {
     if (inputSource.value === 0) {
         outputToTarget.classList.remove('noCaret');
     }
+}
+
+function onKeyDown(e) {
+    const origin = e.target.id
+
+    console.log(e)
+    if (e.key == 'Enter' && origin == 'input11') {
+        submitfield1.click()
+    }
+
 }
 
 document.addEventListener('keydown', (e) => {
@@ -316,7 +337,7 @@ const gearbutton = document.getElementById("gearbutton")
 const logo = document.getElementById("logo")
 const verif = document.getElementById("verif")
 const verif2 = document.getElementById("verif2")
-const submi3 = document.getElementById("submi3")
+const submi5 = document.getElementById("submi5")
 
 let scrollable = true
 
@@ -344,7 +365,7 @@ gearbutton.addEventListener("click", function () {
 select.addEventListener('click', enableScroll)
 verif.addEventListener('click', enableScroll)
 verif2.addEventListener('click', enableScroll)
-submi3.addEventListener('click', enableScroll)
+submi5.addEventListener('click', enableScroll)
 
 
 
