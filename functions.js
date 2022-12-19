@@ -314,6 +314,9 @@ const allow1 = document.getElementById("allow1")
 const select = document.getElementById("allow2")
 const gearbutton = document.getElementById("gearbutton")
 const logo = document.getElementById("logo")
+const verif = document.getElementById("verif")
+const verif2 = document.getElementById("verif2")
+const submi3 = document.getElementById("submi3")
 
 let scrollable = true
 
@@ -339,6 +342,9 @@ gearbutton.addEventListener("click", function () {
 
 
 select.addEventListener('click', enableScroll)
+verif.addEventListener('click', enableScroll)
+verif2.addEventListener('click', enableScroll)
+submi3.addEventListener('click', enableScroll)
 
 
 
@@ -383,6 +389,7 @@ function enableScroll() {
     window.removeEventListener('touchmove', preventDefault, wheelOpt);
     window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
 }
+
 
 //END OF AUTO SCROLL CODE//
 
