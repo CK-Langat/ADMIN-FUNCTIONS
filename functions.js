@@ -472,7 +472,7 @@ observer.observe(ender);
         let current = ''
         let previous = ''
         // console.log({numSliders})
-        console.log({state})
+        // console.log({state})
         for (let i = 0; i < numSliders; i++) {
             const slider = state[i]
             if (!slider.active) continue
