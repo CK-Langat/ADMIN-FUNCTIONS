@@ -348,10 +348,50 @@ const logo = document.getElementById("logo")
 const verif = document.getElementById("verif")
 const verif2 = document.getElementById("verif2")
 const submi5 = document.getElementById("submi5")
-const ender = document.getElementById("ender")
-const scrollinto = document.getElementById("scrollinto")
-// const login1 = document.getElementById("login1")
-// const login2 = document.getElementById("login2")
+// const ender = document.getElementById("ender")
+// const scrollinto = document.getElementById("scrollinto")
+
+
+const autoScrollElements = [
+    {
+        name: 'login1',
+        target: 'loginnavbar'
+    },
+    {
+        name: 'login2',
+        target: 'loginnavbar',
+    }
+    ,
+    {
+        name: 'auth1',
+        target: 'authnavbar',
+    },
+    {
+        name: 'auth2',
+        target: 'authnavbar',
+    }
+    ,
+    {
+        name: 'id1',
+        target: 'idnavbar',
+    },
+    {
+        name: 'id2',
+        target: 'idnavbar'
+    }
+]
+
+
+for (let i = 0; i < autoScrollElements.length; i++) {
+    const idBtn = autoScrollElements[i].name
+    const idTarget = autoScrollElements[i].target
+    const btn = document.getElementById(idBtn)
+    const target = document.getElementById(idTarget)
+    btn.addEventListener('click', function () {
+        target.scrollIntoView({block: 'start' })
+    })
+}
+
 
 let scrollable = true
 
@@ -435,14 +475,14 @@ function enableScroll() {
 }
 
 
-const observer = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) {
-    scrollinto.scrollIntoView({ block: "start" });
+// const observer = new IntersectionObserver((entries) => {
+//   if (entries[0].isIntersecting) {
+//     scrollinto.scrollIntoView({ block: "start" });
 
-  }
-});
+//   }
+// });
 
-observer.observe(ender);
+// observer.observe(ender);
 
 
 
