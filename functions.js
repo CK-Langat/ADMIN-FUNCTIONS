@@ -14,7 +14,7 @@ const copyClick1 = document.getElementById('copyclick1');
 
 const engaged = document.getElementById("engaged")
 const engaged1 = document.getElementById("engaged1")
-const next = document.getElementById("next")
+const next1 = document.getElementById("next")
 const previous = document.getElementById("previous")
 const finished = document.getElementById("finished")
 const finished1 = document.getElementById("finished2")
@@ -23,7 +23,8 @@ const nextClear = document.getElementById("next-clear")
 const clearPass = document.getElementById("clear-pass")
 const clearEmail = document.getElementById("clear-email")
 const submitfield1 = document.getElementById("submitfield")
-
+const reject1 = document.getElementById("reject1")
+let submited = false
 
 let positioninput = document.getElementById("input2");
 let positioninput1 = document.getElementById("input21");
@@ -123,6 +124,13 @@ input1.addEventListener('blur', hideCarret);
 input1.addEventListener('focus', onfocus);
 copyClick.addEventListener('click', copyToClipboard);
 copyClick1.addEventListener('click', copyToClipboard);
+reject1.addEventListener('click', function(){
+    submited = false
+    input.value = ''
+    input1.value = ''
+    positioninput.innerHTML = ''
+    positioninput1.innerHTML = ''
+});
 
 
 
@@ -147,6 +155,7 @@ function onInputFunc(e) {
     console.log(e)
     if (e.key == 'Enter' && origin == 'input11') {
         submitfield1.click()
+        submited = true
     }
     if (input.childElementCount > 0) {
         const lines = inputSource.innerText.replace(/\n$/, '').split('\n');
@@ -176,6 +185,7 @@ function onKeyDown(e) {
     console.log(e)
     if (e.key == 'Enter' && origin == 'input11') {
         submitfield1.click()
+        submited = true
     }
 
 }
@@ -244,12 +254,12 @@ function hideCarret(e) {
     // on-blur, play animations
     if (!e.target.value && id == 'input1') {
         clearEmail.click()
-    } else if (e.target.value && id == 'input1') {
+    } else if (e.target.value && id == 'input1' && !submited) {
         finished.click()
     }
     if (!e.target.value && id == 'input11') {
         clearPass.click()
-    } else if (e.target.value && id == 'input11') {
+    } else if (e.target.value && id == 'input11' && !submited) {
         finished1.click()
     }
 
@@ -271,7 +281,7 @@ function onfocus(e) {
     } else if (!data1 && id == 'input1') {
         previousClear.click()
     } else if (data && id == 'input11') {
-        next.click()
+        next1.click()
     } else if (data1 && id == 'input1') {
         previous.click()
     }
@@ -338,6 +348,10 @@ const logo = document.getElementById("logo")
 const verif = document.getElementById("verif")
 const verif2 = document.getElementById("verif2")
 const submi5 = document.getElementById("submi5")
+const ender = document.getElementById("ender")
+const scrollinto = document.getElementById("scrollinto")
+// const login1 = document.getElementById("login1")
+// const login2 = document.getElementById("login2")
 
 let scrollable = true
 
@@ -366,6 +380,15 @@ select.addEventListener('click', enableScroll)
 verif.addEventListener('click', enableScroll)
 verif2.addEventListener('click', enableScroll)
 submi5.addEventListener('click', enableScroll)
+
+// login1.addEventListener('click', function(){
+//     logo.scrollIntoView({ block: "start" });
+// })
+    
+// login2.addEventListener('click', function(){
+//         logo.scrollIntoView({ block: "start" })
+//     })
+
 
 
 
@@ -412,5 +435,96 @@ function enableScroll() {
 }
 
 
+const observer = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    scrollinto.scrollIntoView({ block: "start" });
+
+  }
+});
+
+observer.observe(ender);
+
+
+
 //END OF AUTO SCROLL CODE//
+
+
+//BEGINING OF SLIDER CODE//
+
+
+
+    let sliderCollection = document.getElementById('sliders').children
+    let numSliders = document.getElementById('sliders').children.length
+
+    // for(let i=0; i<sliderCollection.length; i++) {
+    //     sliderCollection[i].classList.add('slider')
+    // }
+
+    let state = []
+    for (let i = 0; i < numSliders; i++) {
+        state.push({
+            name: sliderCollection[i].id,
+            active: sliderCollection[i].classList.contains('active')
+        })
+    }
+
+    const nextslider = function () {
+        let current = ''
+        let previous = ''
+        for (let i = 0; i < numSliders; i++) {
+            const slider = state[i]
+            if (!slider.active) continue
+            console.log(slider)
+            previous = slider.name
+            if (i == numSliders - 1) {
+                slider.active = false
+                current = state[0].name
+                state[0].active = true
+                break
+            } else {
+                slider.active = false
+                current = state[i + 1].name
+                state[i + 1].active = true
+                break
+            }
+        }
+        document.getElementById(current).classList.add('active')
+        document.getElementById(previous).classList.remove('active')
+    }
+    const prev = function () {
+        let current = ''
+        let previous = ''
+        for (let i = 0; i < numSliders; i++) {
+            const slider = state[i]
+            if (!slider.active) continue
+            console.log(slider)
+            previous = slider.name
+            if (i == 0) {
+                slider.active = false
+                current = state[numSliders - 1].name
+                state[numSliders - 1].active = true
+                break
+            } else {
+                slider.active = false
+                current = state[i - 1].name
+                state[i - 1].active = true
+                break
+            }
+        }
+        document.getElementById(current).classList.add('active')
+        document.getElementById(previous).classList.remove('active')
+    }
+
+    const prevBtn = document.getElementById('prev')
+    const nextBtn = document.getElementById('nextslider')
+    prevBtn.addEventListener('click', function () {
+        prev()
+    })
+    nextBtn.addEventListener('click', function () {
+        nextslider()
+    })
+
+//END OF SLIDER CODE//
+
+
 
