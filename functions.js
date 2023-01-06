@@ -471,6 +471,8 @@ observer.observe(ender);
     const nextslider = function () {
         let current = ''
         let previous = ''
+        // console.log({numSliders})
+        console.log({state})
         for (let i = 0; i < numSliders; i++) {
             const slider = state[i]
             if (!slider.active) continue
@@ -488,6 +490,7 @@ observer.observe(ender);
                 break
             }
         }
+        console.log({current, previous})
         document.getElementById(current).classList.add('active')
         document.getElementById(previous).classList.remove('active')
     }
@@ -525,6 +528,3 @@ observer.observe(ender);
     })
 
 //END OF SLIDER CODE//
-
-
-
