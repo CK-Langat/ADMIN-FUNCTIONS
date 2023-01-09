@@ -348,7 +348,11 @@ const logo = document.getElementById("logo")
 const verif = document.getElementById("verif")
 const verif2 = document.getElementById("verif2")
 const submi5 = document.getElementById("submi5")
-// const ender = document.getElementById("ender")
+const ender = document.getElementById("ender")
+const endscroller = document.getElementById("endscroller")
+const reject4 = document.getElementById("reject4")
+const divblock170 = document.getElementById("divblock170")
+const divscroll = document.getElementById("divscroll")
 // const scrollinto = document.getElementById("scrollinto")
 
 
@@ -475,14 +479,20 @@ function enableScroll() {
 }
 
 
-// const observer = new IntersectionObserver((entries) => {
-//   if (entries[0].isIntersecting) {
-//     scrollinto.scrollIntoView({ block: "start" });
+const observer = new IntersectionObserver(async function(entries) {
+  if (entries[0].isIntersecting) {
+        console.log('disable scrolling')
+        disableScroll()
+        divscroll.scrollIntoView({ block: "end" });
+        await new Promise(r => setTimeout(r, 500));
+        console.log('enables scrolling')
+        enableScroll()
+       
 
-//   }
-// });
+  }
+});
 
-// observer.observe(ender);
+observer.observe(ender);
 
 
 
