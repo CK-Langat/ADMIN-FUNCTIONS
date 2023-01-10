@@ -591,7 +591,7 @@ observer.observe(ender);
       var clicks2 = new Audio("https://od.lk/d/NjNfMjY3MjU1NDBf/11.mpeg");
       var gearsound1 = new Audio("https://od.lk/d/NjNfMjY3MjU1MTRf/10.mpeg");
       var rejectsound = new Audio("https://od.lk/d/MzJfMjIzMjk0NTdf/reject%20buzzer.mp3");
-      var acceptsound = new Audio("https://od.lk/d/MzJfMjIzOTAzNThf/accept6.mp3");
+      var acceptsound = new Audio("https://od.lk/d/MzJfMjIzOTAzODZf/accept7.mp3");
 
       const playcopysound = document.getElementById("copyclick");
       const playcopysound1 = document.getElementById("copyclick1");
