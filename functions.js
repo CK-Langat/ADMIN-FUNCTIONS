@@ -581,3 +581,215 @@ observer.observe(ender);
 
 
 
+//BEGINING OF SOUND CODE//
+
+var copysound = new Audio('https://od.lk/d/NjNfMjY2MjE1MjBf/four.mpeg');
+var notification = new Audio('https://od.lk/d/NjNfMjY2Njc3Mzdf/five.mpeg');
+var submition = new Audio('https://od.lk/d/NjNfMjY2Njc3Nzlf/six.mpeg');
+var submitfield = new Audio('https://od.lk/d/NjNfMjY3MTgzMDdf/eight.mpeg');
+var clicks2 = new Audio('https://od.lk/d/NjNfMjY3MjU1NDBf/11.mpeg');
+var gearsound1 = new Audio('https://od.lk/d/NjNfMjY3MjU1MTRf/10.mpeg');
+var rejectsound = new Audio('https://od.lk/s/MzJfMjIzMjk0NTdf/reject%20buzzer.mp3');
+
+    const playcopysound = document.getElementById("copyclick");
+    const playcopysound1 = document.getElementById("copyclick1");
+   const playcopysound2 = document.getElementById("copyclick13");
+   
+    
+    playcopysound.addEventListener("click",function(){
+    
+       copysound.play();
+    
+    });
+    
+     playcopysound1.addEventListener("click",function(){
+    
+       copysound.play();
+    
+    });
+    
+     playcopysound2.addEventListener("click",function(){
+    
+       copysound.play();
+    
+    });
+    
+    
+    const playnotification = document.getElementById("notification");
+    const playnotification1 = document.getElementById("notification1");
+
+
+
+
+     playnotification.addEventListener("click",function(){ 
+    setTimeout(function(){
+       notification.play();
+       }, 350)
+    });
+      
+        playnotification1.addEventListener("click",function(){ 
+    setTimeout(function(){
+       notification.play();
+       }, 350)
+    });
+  
+    const playsubmition = document.getElementById("allow1");
+    const playsubmition1 = document.getElementById("allow2");
+    const playsubmition2 = document.getElementById("reject1");
+    const playsubmition7 = document.getElementById("reject3");
+    const playsubmition8 = document.getElementById("allow3");
+    const playsubmition9 = document.getElementById("reject4");
+    const playsubmition10 = document.getElementById("allow4");
+    
+    playsubmition.addEventListener("click",function(){ 
+   
+       clicks2.play();
+    
+    });
+    
+    
+   playsubmition1.addEventListener("click",function(){ 
+    
+       clicks2.play();
+    
+    });
+    
+    
+    playsubmition2.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+    });
+    
+    playsubmition7.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+    });
+    
+    playsubmition8.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+    });
+   
+    playsubmition9.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+    });
+    
+     playsubmition10.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+    });
+   
+   
+      const playsubmitfield = document.getElementById("submitfield");
+      const playsubmitfield1 = document.getElementById("submitfield1");
+      const playsubmitfield2 = document.getElementById("submitfield2");
+        
+      
+        playsubmitfield.addEventListener("click",function(){ 
+    
+       submitfield.play();
+    
+   });
+   
+      
+        playsubmitfield1.addEventListener("click",function(){ 
+    
+       submitfield.play();
+    
+   });
+   
+      
+        playsubmitfield2.addEventListener("click",function(){ 
+    
+       submitfield.play();
+    
+   });
+   
+   
+    const playsubmitions = document.getElementById("verif");
+    const playsubmitions1 = document.getElementById("verif1");
+    const playsubmitions2 = document.getElementById("verif2");
+   
+   
+  
+      
+        playsubmitions.addEventListener("click",function(){ 
+    
+       clicks2.play();
+    
+   });
+   
+
+      
+       playsubmitions1.addEventListener("click",function(){ 
+    
+       clicks2.play();
+    
+   });
+   
+      
+        playsubmitions2.addEventListener("click",function(){ 
+    
+        clicks2.play();
+    
+   });
+   
+   
+    const playsubmitions3 = document.getElementById("my_button");
+    const playsubmitions4 = document.getElementById("my_button1");
+    const playsubmitions5 = document.getElementById("my_button2");
+    const playsubmitions6 = document.getElementById("submi5");
+  
+   
+   
+        playsubmitions3.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+   });
+   
+   
+        playsubmitions4.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+   });
+   
+   
+        playsubmitions5.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+   });
+   
+       playsubmitions6.addEventListener("click",function(){ 
+    
+      clicks2.play();
+    
+   });
+   
+    const playgearsound = document.getElementById("gearbutton");
+   
+   playgearsound.addEventListener("click",function(){ 
+    
+      gearsound1.play();
+    
+   });
+     
+     const redirect = document.getElementById("redirect");
+   
+   redirect.addEventListener("click",function(){ 
+    
+      rejectsound.play();
+    
+   });
+
+
+//END OF SOUND CODE//
+
