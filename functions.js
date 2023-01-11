@@ -1,7 +1,5 @@
-
-
-
 //BEGINING OF OUTPUTSTYLE CODE//
+
 
 // const history = document.getElementById('history');
 
