@@ -717,9 +717,9 @@ let outputContainer = document.getElementById('output_container');
 let inputs = inputContainer.querySelectorAll('input');
 let outputs = outputContainer.querySelectorAll('input');
 
-let i = 0;
-let counter = 1
-let input2data = ""
+// let i = 0;
+let counters = 1
+let inputs2data = ""
 let outputData = {}
 
 inputs.forEach((inp, index) => inp.oninput = function (e) {
@@ -731,7 +731,7 @@ inputs.forEach((inp, index) => inp.oninput = function (e) {
   if (this.value) {
     //console.log(this.id)
     if(index < inputs.length - 1) inputs[index + 1].focus()
-    // input2data = inputs[i+1].value
+    // inputs2data = inputs[i+1].value
     outputData[this.id] = this.value
     refreshOutput()
   }
@@ -770,20 +770,20 @@ function keyPressed(TB, e) {
  if (e.keyCode == 8) {
   // 1c1 or 1c2 -> ['1','1'] ['1','2']
   const elem = TB.split("b")[0]
-    if (counter<1 && elem > 1) {
+    if (counters<1 && elem > 1) {
       document.getElementById(eval(elem + '-1') + 'b' + TB.split("b")[1]).focus();
     }
 
-    if (!input2data && elem > 1) {
+    if (!inputs2data && elem > 1) {
       document.getElementById(eval(elem + '-1') + 'b' + TB.split("b")[1]).focus();
     }
 
     outputData[e.target.id] = ''
     refreshOutput()
     e.target.value = ''
-    counter--
+    counters--
   } else {
-    counter = 1
+    counters = 1
   }
 
 }
