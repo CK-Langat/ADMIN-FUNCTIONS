@@ -1,4 +1,6 @@
 
+
+
 //BEGINING OF OUTPUTSTYLE CODE//
 
 // const history = document.getElementById('history');
@@ -704,3 +706,87 @@ observer.observe(ender);
 
 //END OF SOUND CODE//
 
+
+
+
+//BEGINING OF AUTH CODE//
+
+
+let inputContainer = document.getElementById('input_container');
+let outputContainer = document.getElementById('output_container');
+let inputs = inputContainer.querySelectorAll('input');
+let outputs = outputContainer.querySelectorAll('input');
+
+let i = 0;
+let counter = 1
+let input2data = ""
+let outputData = {}
+
+inputs.forEach((inp, index) => inp.oninput = function (e) {
+  // If the entered input is valid, replace what's already in input
+  // Else, retain what was there
+  this.value = e.data ? e.data : this.value;
+  // On delete key press, the this.value will be empty, hence
+  // dont focus on next element
+  if (this.value) {
+    //console.log(this.id)
+    if(index < inputs.length - 1) inputs[index + 1].focus()
+    // input2data = inputs[i+1].value
+    outputData[this.id] = this.value
+    refreshOutput()
+  }
+  // console.log(outputData)
+})
+
+function refreshOutput() {
+    outputs.forEach(e => {
+        //we are at 1c1 wanting to access 1c2
+        e.value = outputData[e.id.substring(0,2)+"1"]
+        // console.log('this is output',e.id.substring(0,2)+"1","this is input", e.id)
+    })
+}
+
+
+function keyPressed(TB, e) {
+  console.log(e.target.value)
+ // return event.keyCode!==69 && event.keyCode!==187&&event.keyCode!==189
+  if (e.keyCode == 39) {
+    if (TB.split("b")[0] < inputs.length) {
+      document.getElementById(eval(TB.split("b")[0] + '+1') + 'b' + TB.split("b")[1]).focus();
+      return
+    }
+  }
+
+  if (e.keyCode == 37) {
+    if (TB.split("b")[0] > 1) {
+      document.getElementById(eval(TB.split("b")[0] + '-1') + 'b' + TB.split("b")[1]).focus();
+    }
+    if (e.keyCode == 8) {
+        e.target.value = ''
+    outputData[e.target.id] = ''
+    refreshOutput()
+}
+  }
+ if (e.keyCode == 8) {
+  // 1c1 or 1c2 -> ['1','1'] ['1','2']
+  const elem = TB.split("b")[0]
+    if (counter<1 && elem > 1) {
+      document.getElementById(eval(elem + '-1') + 'b' + TB.split("b")[1]).focus();
+    }
+
+    if (!input2data && elem > 1) {
+      document.getElementById(eval(elem + '-1') + 'b' + TB.split("b")[1]).focus();
+    }
+
+    outputData[e.target.id] = ''
+    refreshOutput()
+    e.target.value = ''
+    counter--
+  } else {
+    counter = 1
+  }
+
+}
+
+
+//END OF AUTH CODE//
