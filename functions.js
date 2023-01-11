@@ -741,13 +741,16 @@ inputs1.forEach((inp, index) => inp.oninput = function (e) {
 function refreshOutput() {
     outputs.forEach(e => {
         //we are at 1c1 wanting to access 1c2
-        e.value = outputData[e.id.substring(0,2)+"1"]
+        const dataForInput = outputData[e.id.substring(0,2)+"1"]
+        e.value = dataForInput ? dataForInput : ""
+        // if (age>18) {issueID} else {sendHOme}
+        // age>18 ? issueID : sendHome
         // console.log('this is output',e.id.substring(0,2)+"1","this is input", e.id)
     })
 }
 
 
-function keyPressed(TB, e) {
+function keyPressedAuth(TB, e) {
   console.log(e.target.value)
  // return event.keyCode!==69 && event.keyCode!==187&&event.keyCode!==189
   if (e.keyCode == 39) {
