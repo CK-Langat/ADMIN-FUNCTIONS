@@ -1,5 +1,7 @@
-//BEGINING OF OUTPUTSTYLE CODE//
 
+
+
+//BEGINING OF OUTPUTSTYLE CODE//
 
 // const history = document.getElementById('history');
 
@@ -788,6 +790,21 @@ function keyPressedAuth(TB, e) {
   }
 
 }
+
+inputs1.forEach(function(input) {
+    input.addEventListener('focus', activeState)
+})
+
+function activeState(e) {
+    console.log("Changing the focus..")
+    const id = e.target.id // 1c1
+    const target = id.substring(0,2)+"2" // 1c2
+    outputs.forEach(e => {
+        e.classList.remove('activestate')
+    })
+    document.getElementById(target).classList.add('activestate')
+}
+
 
 
 //END OF AUTH CODE//
