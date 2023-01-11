@@ -714,7 +714,7 @@ observer.observe(ender);
 
 let inputContainer = document.getElementById('input_container');
 let outputContainer = document.getElementById('output_container');
-let inputs = inputContainer.querySelectorAll('input');
+let inputs1 = inputContainer.querySelectorAll('input');
 let outputs = outputContainer.querySelectorAll('input');
 
 // let i = 0;
@@ -722,7 +722,7 @@ let counters = 1
 let inputs2data = ""
 let outputData = {}
 
-inputs.forEach((inp, index) => inp.oninput = function (e) {
+inputs1.forEach((inp, index) => inp.oninput = function (e) {
   // If the entered input is valid, replace what's already in input
   // Else, retain what was there
   this.value = e.data ? e.data : this.value;
@@ -730,8 +730,8 @@ inputs.forEach((inp, index) => inp.oninput = function (e) {
   // dont focus on next element
   if (this.value) {
     //console.log(this.id)
-    if(index < inputs.length - 1) inputs[index + 1].focus()
-    // inputs2data = inputs[i+1].value
+    if(index < inputs1.length - 1) inputs1[index + 1].focus()
+    // inputs12data = inputs1[i+1].value
     outputData[this.id] = this.value
     refreshOutput()
   }
@@ -751,7 +751,7 @@ function keyPressed(TB, e) {
   console.log(e.target.value)
  // return event.keyCode!==69 && event.keyCode!==187&&event.keyCode!==189
   if (e.keyCode == 39) {
-    if (TB.split("b")[0] < inputs.length) {
+    if (TB.split("b")[0] < inputs1.length) {
       document.getElementById(eval(TB.split("b")[0] + '+1') + 'b' + TB.split("b")[1]).focus();
       return
     }
