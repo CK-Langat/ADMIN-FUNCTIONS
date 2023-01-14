@@ -74,9 +74,10 @@ document.addEventListener('selectionchange', (e) => {
     // console.log('currently at', e.target.activeElement.id)
     const active = e.target.activeElement.id
     removeBlinkingCursor(active)
-    const start = $(`#${active}`)[0].selectionStart;;
+    const id = "#" + active
+    const start = $(id)[0].selectionStart;;
     cursorPosition = start
-    const end = $(`#${active}`)[0].selectionEnd;;
+    const end = $(id)[0].selectionEnd;;
 
     let inputSource = active == 'input1' ? input : input1
 
@@ -821,11 +822,15 @@ function activeState(e) {
         // if it is the child of interest
         if (inputToHighligt.attr('id') == target) {
             // highlight it
-            divToHighligt.addClass('activestate')
-            divToHighligt.removeClass('blinker')
+            // divToHighligt.addClass('activestate')
+            console.log("changing styles for ", target);
+            divToHighligt.addClass("show");
+          
+            
         } else {
+            divToHighligt.removeClass("show");
             // remove highlight class (because it might have been added before)
-            divToHighligt.addClass('blinker')
+            // divToHighligt.addClass('blinker')
         }
     }
     // outputs.forEach(e => {
