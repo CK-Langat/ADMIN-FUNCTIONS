@@ -717,6 +717,11 @@ let inputContainer = document.getElementById('input_container');
 let outputContainer = document.getElementById('output_container');
 let inputs1 = inputContainer.querySelectorAll('input');
 let outputs = outputContainer.querySelectorAll('input');
+let endgagedauth = document.getElementById('endgagedauth');
+let clearauth = document.getElementById('clearauth');
+let submitfieldauth = document.getElementById('submitfieldauth');
+let finishedauth = document.getElementById('finishedauth');
+
 
 // let i = 0;
 let counters = 1
@@ -792,8 +797,28 @@ function keyPressedAuth(TB, e) {
 
 }
 
+let engagedState = false
+function clickEngaged() {
+    if(!engagedState) {
+        endgagedauth.click()
+        engagedState = true
+    }
+}
+
+let finishedState = false
+function clickClearAuth() {
+    if(finishedState) {
+        clearauth.click()
+        finishedState = false
+    }
+}
+
 inputs1.forEach(function(input) {
     input.addEventListener('focus', activeState)
+})
+
+inputs1.forEach(function(input) {
+    input.addEventListener('blur', outOfFocus)
 })
 
 // Get all the children of the output container
@@ -801,7 +826,13 @@ const outputParents = $("#output_container").children();
 
 // when active state is called
 function activeState(e) {
-    console.log("Changing the focus..")
+    
+    clickClearAuth()
+
+    // setTimeout(function() {
+    clickEngaged()
+// }, 550);
+   
     const id = e.target.id // 1c1
 
     // calculate the ID of the target output input
@@ -833,12 +864,53 @@ function activeState(e) {
             // divToHighligt.addClass('blinker')
         }
     }
+
+    
     // outputs.forEach(e => {
     //     e.classList.remove('activestate')
     // })
     // document.getElementById(target).classList.add('activestate')
 }
 
+// when input loses focus
+function outOfFocus(e) {
+    checkData(outputParents)
 
+    for (let i = 0; i < outputParents.length; i++) {
+
+        // get the current child
+        const oneDiv = outputParents[i]
+
+        // get the div (used for highlighting) of the current child
+        const divToHighligt = $(oneDiv).find('div')
+
+        // remove highlight on all
+        divToHighligt.removeClass("show");
+        
+           
+    }
+}
+
+function checkData(parents){
+    const vals = []
+    for (let i = 0; i < parents.length; i++) {
+
+        // get the current child
+        const content = parents[i]
+
+        // get the div (used for highlighting) of the current child
+        const dataInElem = $(content).find('input').val()
+
+        if (dataInElem) vals.push(dataInElem)          
+    }
+    if (vals.length<6) {
+        console.log("Not complete..")
+    }
+    else {
+        finishedState = true
+        finishedauth.click()
+        console.log("complete..")
+    }
+}
 
 //END OF AUTH CODE//
