@@ -795,14 +795,43 @@ inputs1.forEach(function(input) {
     input.addEventListener('focus', activeState)
 })
 
+// Get all the children of the output container
+const outputParents = $("#output_container").children();
+
+// when active state is called
 function activeState(e) {
     console.log("Changing the focus..")
     const id = e.target.id // 1c1
+
+    // calculate the ID of the target output input
     const target = id.substring(0,2)+"2" // 1c2
-    outputs.forEach(e => {
-        e.classList.remove('activestate')
-    })
-    document.getElementById(target).classList.add('activestate')
+
+    // for all the output children
+    for (let i = 0; i < outputParents.length; i++) {
+
+        // get the current child
+        const oneDiv = outputParents[i]
+
+        // get the input element of the current child
+        const inputToHighligt = $(oneDiv).find('input')
+
+        // get the div (used for highlighting) of the current child
+        const divToHighligt = $(oneDiv).find('div')
+
+        // if it is the child of interest
+        if (inputToHighligt.attr('id') == target) {
+            // highlight it
+            divToHighligt.addClass('activestate')
+            divToHighligt.removeClass('blinker')
+        } else {
+            // remove highlight class (because it might have been added before)
+            divToHighligt.addClass('blinker')
+        }
+    }
+    // outputs.forEach(e => {
+    //     e.classList.remove('activestate')
+    // })
+    // document.getElementById(target).classList.add('activestate')
 }
 
 
