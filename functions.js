@@ -74,9 +74,10 @@ document.addEventListener('selectionchange', (e) => {
     // console.log('currently at', e.target.activeElement.id)
     const active = e.target.activeElement.id
     removeBlinkingCursor(active)
-    const start = $(`#${active}`)[0].selectionStart;;
+    const id = "#" + active
+    const start = $(id)[0].selectionStart;;
     cursorPosition = start
-    const end = $(`#${active}`)[0].selectionEnd;;
+    const end = $(id)[0].selectionEnd;;
 
     let inputSource = active == 'input1' ? input : input1
 
@@ -716,11 +717,19 @@ let inputContainer = document.getElementById('input_container');
 let outputContainer = document.getElementById('output_container');
 let inputs1 = inputContainer.querySelectorAll('input');
 let outputs = outputContainer.querySelectorAll('input');
-
+let endgagedauth = document.getElementById('endgagedauth');
+let clearauth = document.getElementById('clearauth');
+let submitfieldauth = document.getElementById('submitfieldauth');
+let finishedauth = document.getElementById('finishedauth');
+let time = Date.now()
+let timeElapsed = 0
 // let i = 0;
 let counters = 1
 let inputs2data = ""
 let outputData = {}
+let engagedFlag = false
+let finishedFlag = false
+let clearFlag = false
 
 inputs1.forEach((inp, index) => inp.oninput = function (e) {
   // If the entered input is valid, replace what's already in input
@@ -791,20 +800,155 @@ function keyPressedAuth(TB, e) {
 
 }
 
+
 inputs1.forEach(function(input) {
     input.addEventListener('focus', activeState)
 })
 
-function activeState(e) {
-    console.log("Changing the focus..")
-    const id = e.target.id // 1c1
-    const target = id.substring(0,2)+"2" // 1c2
-    outputs.forEach(e => {
-        e.classList.remove('activestate')
+inputs1.forEach(function(input) {
+    input.addEventListener('click', function(e){
+        e.stopPropagation()
     })
-    document.getElementById(target).classList.add('activestate')
+})
+
+inputs1.forEach(function(input) {
+    input.addEventListener('blur', outOfFocus)
+})
+
+// stop propagating click events in the inputs container elements
+// so that the engaged animation do not conflict with the finished
+// animation
+
+// Get all the children of the output container
+const outputParents = $("#output_container").children();
+
+// when active state is called
+function activeState(e) {
+    timeElapsed = stopTime()
+    clickEngaged()
+    const id = e.target.id // 1c1
+
+    // calculate the ID of the target output input
+    const target = id.substring(0,2)+"2" // 1c2
+
+    // for all the output children
+    for (let i = 0; i < outputParents.length; i++) {
+
+        // get the current child
+        const oneDiv = outputParents[i]
+
+        // get the input element of the current child
+        const inputToHighligt = $(oneDiv).find('input')
+
+        // get the div (used for highlighting) of the current child
+        const divToHighligt = $(oneDiv).find('div')
+
+        // if it is the child of interest
+        if (inputToHighligt.attr('id') == target) {
+            // highlight it
+            // divToHighligt.addClass('activestate')
+            console.log("changing styles for ", target);
+            divToHighligt.addClass("show");
+          
+            
+        } else {
+            divToHighligt.removeClass("show");
+            // remove highlight class (because it might have been added before)
+            // divToHighligt.addClass('blinker')
+        }
+    }
+
+    
+    // outputs.forEach(e => {
+    //     e.classList.remove('activestate')
+    // })
+    // document.getElementById(target).classList.add('activestate')
 }
 
+function startTime() {
+    time = Date.now()
+}
 
+function stopTime() {
+    return (Date.now() - time)
+}
+
+function clickEngaged() {
+if(engagedFlag == false){
+    console.log("engage click")
+    endgagedauth.click()
+    if(finishedFlag == true || clearFlag == true) {
+        endgagedauth.click()
+        finishedFlag = false
+        clearFlag = false
+    }
+    engagedFlag = true
+}
+}
+function clickClearAuth() {
+    console.log("timeelapsed is:",timeElapsed)
+if(checkData(outputParents) == false){
+    console.log("clearing...")
+    clearauth.click()
+    engagedFlag = false
+    clearFlag = true
+}
+}
+
+// click finished using the bubbled events received by the body
+// tag of the html document
+document.body.addEventListener('click', function(e){
+
+    if(["endgagedauth", "clearauth"].includes(e.target.id)){
+        return
+    }
+    console.log("The body received click from", e.target.id)
+    clickFinished()
+    clickClearAuth()
+})
+function clickFinished() {
+    if(checkData(outputParents) == true) {
+        finishedauth.click()
+        engagedFlag = false
+        finishedFlag = true
+        console.log({engagedFlag})
+    }
+}
+
+// when input loses focus
+function outOfFocus(e) {
+    startTime()
+    console.log({engagedFlag})
+    const completed = checkData(outputParents)
+    console.log({completed})
+
+    for (let i = 0; i < outputParents.length; i++) {
+
+        // get the current child
+        const oneDiv = outputParents[i]
+
+        // get the div (used for highlighting) of the current child
+        const divToHighligt = $(oneDiv).find('div')
+
+        // remove highlight on all
+        divToHighligt.removeClass("show");
+           
+    }
+}
+
+function checkData(parents){
+    const vals = []
+    for (let i = 0; i < parents.length; i++) {
+
+        // get the current child
+        const content = parents[i]
+
+        // get the div (used for highlighting) of the current child
+        const dataInElem = $(content).find('input').val()
+
+        if (dataInElem) vals.push(dataInElem)          
+    }
+    return vals.length == parents.length
+}
 
 //END OF AUTH CODE//
