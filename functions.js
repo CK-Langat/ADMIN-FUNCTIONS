@@ -1,6 +1,3 @@
-
-
-
 //BEGINING OF OUTPUTSTYLE CODE//
 
 // const history = document.getElementById('history');
@@ -24,7 +21,7 @@ const previousClear = document.getElementById("previous-clear")
 const nextClear = document.getElementById("next-clear")
 const clearPass = document.getElementById("clear-pass")
 const clearEmail = document.getElementById("clear-email")
-const submitfield1 = document.getElementById("submitfield")
+const submitfield2 = document.getElementById("submitfield")
 const reject1 = document.getElementById("reject1")
 let submited = false
 
@@ -155,9 +152,9 @@ function onInputFunc(e) {
         refresh(origin)
     }
 
-    console.log(e)
+    //console.log(e)
     if (e.key == 'Enter' && origin == 'input11') {
-        submitfield1.click()
+        submitfield2.click()
         submited = true
     }
     if (input.childElementCount > 0) {
@@ -185,9 +182,9 @@ function onInputFunc(e) {
 function onKeyDown(e) {
     const origin = e.target.id
 
-    console.log(e)
+    //console.log(e)
     if (e.key == 'Enter' && origin == 'input11') {
-        submitfield1.click()
+        submitfield2.click()
         submited = true
     }
 
@@ -317,13 +314,13 @@ function copyToClipboard(e) {
     const outputWithData = id == 'copyclick' ? positioninput : positioninput1
 
     const text = outputWithData.textContent
-    console.log('copying the following data: ', text)
+   // console.log('copying the following data: ', text)
 
     navigator.clipboard.writeText(text).then(function () {
-        console.log('copied to clipboard: ', text)
+        //console.log('copied to clipboard: ', text)
         // The text has been successfully written to the clipboard
     }, function (err) {
-        console.log('There was an error copyting text: ', err)
+        //console.log('There was an error copyting text: ', err)
         // There was an error writing the text to the clipboard
     });
 }
@@ -484,11 +481,11 @@ function enableScroll() {
 
 const observer = new IntersectionObserver(async function(entries) {
   if (entries[0].isIntersecting) {
-        console.log('disable scrolling')
+       // console.log('disable scrolling')
         disableScroll()
         divscroll.scrollIntoView({ block: "end" });
         await new Promise(r => setTimeout(r, 500));
-        console.log('enables scrolling')
+       // console.log('enables scrolling')
         enableScroll()
        
 
@@ -529,7 +526,7 @@ observer.observe(ender);
         for (let i = 0; i < numSliders; i++) {
             const slider = state[i]
             if (!slider.active) continue
-            console.log(slider)
+            //console.log(slider)
             previous = slider.name
             if (i == numSliders - 1) {
                 slider.active = false
@@ -543,7 +540,7 @@ observer.observe(ender);
                 break
             }
         }
-        console.log({current, previous})
+        //console.log({current, previous})
         document.getElementById(current).classList.add('active')
         document.getElementById(previous).classList.remove('active')
     }
@@ -553,7 +550,7 @@ observer.observe(ender);
         for (let i = 0; i < numSliders; i++) {
             const slider = state[i]
             if (!slider.active) continue
-            console.log(slider)
+            //console.log(slider)
             previous = slider.name
             if (i == 0) {
                 slider.active = false
@@ -719,8 +716,8 @@ let inputs1 = inputContainer.querySelectorAll('input');
 let outputs = outputContainer.querySelectorAll('input');
 let endgagedauth = document.getElementById('endgagedauth');
 let clearauth = document.getElementById('clearauth');
-let submitfieldauth = document.getElementById('submitfieldauth');
 let finishedauth = document.getElementById('finishedauth');
+let copyChildrenBtn = document.getElementById('copyclick13');
 let time = Date.now()
 let timeElapsed = 0
 // let i = 0;
@@ -730,6 +727,7 @@ let outputData = {}
 let engagedFlag = false
 let finishedFlag = false
 let clearFlag = false
+let currentParent = null
 
 inputs1.forEach((inp, index) => inp.oninput = function (e) {
   // If the entered input is valid, replace what's already in input
@@ -760,7 +758,7 @@ function refreshOutput() {
 
 
 function keyPressedAuth(TB, e) {
-  console.log(e.target.value)
+  //console.log(e.target.value)
  // return event.keyCode!==69 && event.keyCode!==187&&event.keyCode!==189
   if (e.keyCode == 39) {
     if (TB.split("b")[0] < inputs1.length) {
@@ -768,6 +766,7 @@ function keyPressedAuth(TB, e) {
       return
     }
   }
+  
 
   if (e.keyCode == 37) {
     if (TB.split("b")[0] > 1) {
@@ -779,6 +778,13 @@ function keyPressedAuth(TB, e) {
     refreshOutput()
 }
   }
+  const {length,expected} = checkData(currentParent) 
+if (e.keyCode == 13 &&  length == expected) {
+        submitfield1.click()
+        submited = true
+        finishedFlag = true
+    }
+
  if (e.keyCode == 8) {
   // 1c1 or 1c2 -> ['1','1'] ['1','2']
   const elem = TB.split("b")[0]
@@ -800,9 +806,13 @@ function keyPressedAuth(TB, e) {
 
 }
 
+const inputParent = $("#input_container").children();
 
 inputs1.forEach(function(input) {
-    input.addEventListener('focus', activeState)
+    input.addEventListener('focus', function(e){
+        currentParent = inputParent
+        activeState(e)
+    })
 })
 
 inputs1.forEach(function(input) {
@@ -813,6 +823,11 @@ inputs1.forEach(function(input) {
 
 inputs1.forEach(function(input) {
     input.addEventListener('blur', outOfFocus)
+})
+
+copyChildrenBtn.addEventListener('click', function(e){
+   // console.log(e.target.id, "copying to clipboard...ß")
+    copyChildrenToClipboard(currentParent)
 })
 
 // stop propagating click events in the inputs container elements
@@ -847,7 +862,7 @@ function activeState(e) {
         if (inputToHighligt.attr('id') == target) {
             // highlight it
             // divToHighligt.addClass('activestate')
-            console.log("changing styles for ", target);
+            //console.log("changing styles for ", target);
             divToHighligt.addClass("show");
           
             
@@ -875,7 +890,7 @@ function stopTime() {
 
 function clickEngaged() {
 if(engagedFlag == false){
-    console.log("engage click")
+    //console.log("engage click")
     endgagedauth.click()
     if(finishedFlag == true || clearFlag == true) {
         endgagedauth.click()
@@ -886,9 +901,10 @@ if(engagedFlag == false){
 }
 }
 function clickClearAuth() {
-    console.log("timeelapsed is:",timeElapsed)
-if(checkData(outputParents) == false){
-    console.log("clearing...")
+    //console.log("timeelapsed is:",timeElapsed)
+    const {length} = checkData(outputParents)
+if(length == 0){
+   // console.log("clearing...")
     clearauth.click()
     engagedFlag = false
     clearFlag = true
@@ -902,25 +918,27 @@ document.body.addEventListener('click', function(e){
     if(["endgagedauth", "clearauth"].includes(e.target.id)){
         return
     }
-    console.log("The body received click from", e.target.id)
+   // console.log("The body received click from", e.target.id)
     clickFinished()
     clickClearAuth()
 })
 function clickFinished() {
-    if(checkData(outputParents) == true) {
+    const {length,expected} = checkData(outputParents)
+    if(length == expected && finishedFlag == false) {
         finishedauth.click()
         engagedFlag = false
         finishedFlag = true
-        console.log({engagedFlag})
+        //console.log({engagedFlag})
     }
 }
 
 // when input loses focus
 function outOfFocus(e) {
     startTime()
-    console.log({engagedFlag})
-    const completed = checkData(outputParents)
-    console.log({completed})
+    //console.log({engagedFlag})
+    const {length, expected} = checkData(outputParents)
+    const completed = length == expected
+   // console.log({completed})
 
     for (let i = 0; i < outputParents.length; i++) {
 
@@ -937,6 +955,10 @@ function outOfFocus(e) {
 }
 
 function checkData(parents){
+    if (!parents) return {
+        lenght: null,
+        expected: 1
+    }
     const vals = []
     for (let i = 0; i < parents.length; i++) {
 
@@ -948,7 +970,35 @@ function checkData(parents){
 
         if (dataInElem) vals.push(dataInElem)          
     }
-    return vals.length == parents.length
+    return {
+        length: vals.length,
+        expected: parents.length
+    }
+}
+
+function copyChildrenToClipboard(parent) {
+    const vals = []
+    for (let i = 0; i < parent.length; i++) {
+
+        // get the current child
+        const content = parent[i]
+
+        // get the div (used for highlighting) of the current child
+        const dataInElem = $(content).find('input').val()
+
+        if (dataInElem) vals.push(dataInElem)          
+    }
+
+    const text = vals.join('')
+   // console.log('copying the following data: ', text)
+
+    navigator.clipboard.writeText(text).then(function () {
+        //console.log('copied to clipboard: ', text)
+        // The text has been successfully written to the clipboard
+    }, function (err) {
+       // console.log('There was an error copyting text: ', err)
+        // There was an error writing the text to the clipboard
+    });
 }
 
 //END OF AUTH CODE//
