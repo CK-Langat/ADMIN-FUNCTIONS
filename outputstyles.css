@@ -12,6 +12,10 @@
 
    }
 
+.no-scroll {
+      overflow-y: hidden !important;
+    
+
    #input1 {
        display: inline;
        outline: none;
