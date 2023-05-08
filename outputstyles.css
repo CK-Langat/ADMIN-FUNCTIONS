@@ -1,5 +1,10 @@
    /* BEGINING OF CURSOR CODE */
 
+.space {
+    width: 25px;
+    display: inline-flex;
+  }
+
    .black {
        /* width: 10px; */
 
